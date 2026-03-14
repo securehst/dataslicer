@@ -102,7 +102,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Attest build provenance
-        uses: actions/attest-build-provenance@v3
+        uses: actions/attest-build-provenance@v4
         if: steps.release.outputs.released == 'true'
         with:
           subject-path: "dist/*"
@@ -193,7 +193,7 @@ jobs:
         shell: bash
 
       - name: Upload Executable
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: dataslicer-${{ matrix.os }}-${{ needs.release.outputs.tag }}
           path: dist/*
@@ -208,7 +208,7 @@ jobs:
       contents: write
     steps:
       - name: Download all executables
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           path: executables
 
